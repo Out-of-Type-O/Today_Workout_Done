@@ -5,6 +5,7 @@ import About from "./pages/About";
 import RootLayout from "./layouts/RootLayout";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import Error from "./pages/Error";
 import AuthLayout from "./layouts/AuthLayout";
 
 export default function App() {
@@ -14,6 +15,7 @@ export default function App() {
         <Route element={<RootLayout />}>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/Error" element={<Error />} />
         </Route>
 
         <Route element={<AuthLayout />}>
