@@ -2,6 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: jalnan;
+  src: url("https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
 @layer utilities {
   /* 유저목록 모달창 before:: */
   .modal-before {
