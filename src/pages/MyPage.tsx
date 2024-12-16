@@ -5,11 +5,13 @@ import CheckDone from "../components/checkDone/CheckDone";
 import Loading from "../components/Loading";
 import { useLoadingStore } from "../stores/loadingStore";
 import CustomCalendar from "../components/MyPage/CustomCalendar";
+
 export default function MyPage() {
   const myInfo = useAuth((state) => state.user);
 
   const isLoading = useLoadingStore((state) => state.isLoading);
-  console.log(myInfo);
+  // console.log(myInfo);
+
   return (
     <>
       {myInfo && (

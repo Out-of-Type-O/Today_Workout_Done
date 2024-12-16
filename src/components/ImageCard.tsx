@@ -5,6 +5,12 @@ import chatIcon from "../assets/chat_icon.svg";
 import UserProfile from "./UserProfile";
 import { useNavigate } from "react-router";
 import { channelMapping } from "../constants/channel";
+import { api } from "../api/axios";
+import { useEffect, useState } from "react";
+
+interface Channel {
+  _id: string;
+}
 
 export default function ImageCard({
   image,
@@ -16,8 +22,8 @@ export default function ImageCard({
   fullName,
   userImg, // 마이페이지, 로그인 한 유저의 사진
   _id: post_id,
-  channel,
 }: PostType & MyInfo) {
+  const [channel, setChannel] = useState<Channel | null>(null);
   const navigate = useNavigate();
   const update = new Date(createdAt);
   const date = update
@@ -43,9 +49,25 @@ export default function ImageCard({
     postTitle = title;
   }
 
-  const channelName = Object.keys(channelMapping).find(
-    (key) => channelMapping[key] === channel?._id
-  );
+  useEffect(() => {
+    const getPostData = async () => {
+      try {
+        const { data } = await api.get(`/posts/${post_id}`);
+        setChannel(data.channel);
+        // console.log(data);
+      } catch (error) {
+        console.error("Error fetching post data:", error);
+      }
+    };
+
+    getPostData();
+  }, [post_id]);
+
+  const postChannelName = channel
+    ? Object.keys(channelMapping).find(
+        (key) => channelMapping[key] === channel._id
+      )
+    : null;
 
   // 본인 좋아요 확인
   const checkIsLiked = likes.some((like) => like.user === author?._id);
@@ -56,7 +78,11 @@ export default function ImageCard({
       <div
         className="group relative w-[250px] h-[250px] bg-cover bg-center rounded-2xl shadow-lg cursor-pointer"
         style={{ backgroundImage: `url(${image || thumbnail})` }}
-        onClick={() => navigate(`/${channelName}/${post_id}`)}
+        onClick={() =>
+          postChannelName
+            ? navigate(`/${postChannelName}/${post_id}`)
+            : console.error("Invalid postChannelName")
+        }
       >
         {/* Hover */}
         <div className="absolute inset-0 flex flex-col items-center justify-center text-white transition-opacity duration-300 bg-black bg-opacity-50 rounded-2xl opacity-0 group-hover:opacity-100">
