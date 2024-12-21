@@ -88,7 +88,7 @@ export default function ReviewPost() {
   }, []);
 
   return (
-    <div className="relative flex flex-col items-center gap-8 py-8 dark:bg-lightBlackDark">
+    <div className="relative flex flex-col items-center gap-8 py-8 border-2 border-green-500 dark:bg-lightBlackDark">
       {/* 로딩창 */}
       <Loading />
       {/* 검색창 */}
@@ -104,7 +104,7 @@ export default function ReviewPost() {
         />
       </div>
       {/* 피드 게시물 */}
-      <div className="flex flex-col items-center gap-16">
+      <div className="flex flex-col items-center gap-16 border-2 border-blue-500">
         {status === "searching" &&
           (searchPosts.length ? (
             searchPosts.map((post) => <Review key={post._id} {...post} />)

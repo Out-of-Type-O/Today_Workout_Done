@@ -62,17 +62,17 @@ export default function Review({
 
   return (
     <div
-      className="w-[1014px] h-[360px] flex gap-16 cursor-pointer rounded-xl border border-lightGreyDark/50 dark:bg-darkGreyDark dark:text-[#fff]"
+      className="w-full h-[360px] flex items-center px-8 gap-16 cursor-pointer rounded-xl border border-lightGreyDark/50 dark:bg-darkGreyDark dark:text-[#fff] border-2 border-red-500"
       onClick={() => navigate(`/gymreview/${post_id}`)}
     >
       {/* 썸네일(왼쪽) */}
       <div
         className="w-[380px] h-[300px] bg-cover bg-center
-        rounded-2xl shadow-lg m-[30px]"
+        rounded-2xl shadow-lg border-2 border-green-500"
         style={{ backgroundImage: `url(${image || thumbnail})` }}
       />
       {/* 게시물 정보(오른쪽) */}
-      <div className="flex flex-col justify-between">
+      <div className="flex flex-col justify-between border-2 border-red-500">
         {/* 글 작성자 정보 */}
         <div className="flex justify-start gap-[13px] mt-[30px]">
           {/* 유저 프로필 이미지 */}
