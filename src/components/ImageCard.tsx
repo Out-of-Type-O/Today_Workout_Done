@@ -6,6 +6,7 @@ import UserProfile from "./UserProfile";
 import { useLocation, useNavigate } from "react-router";
 import { channelMapping } from "../constants/channel";
 import { useAuth } from "../stores/authStore";
+import moment from "moment";
 
 export default function ImageCard({
   image,
@@ -27,11 +28,10 @@ export default function ImageCard({
   const isLogin = useAuth((state) => state.isLoggedIn);
   const myInfo = useAuth((state) => state.user);
   const navigate = useNavigate();
-  const update = new Date(createdAt);
-  const date = update
-    .toLocaleDateString("ko-KR")
-    .slice(0, -1)
-    .replace(/\s/g, "");
+
+  // 날짜 형식
+  const update = moment(createdAt); // moment로 변환
+  const date = update.format("YYYY.MM.DD"); // 원하는 형식으로 포맷팅
 
   function isValidJson(data: string) {
     try {
