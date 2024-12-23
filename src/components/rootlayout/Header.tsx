@@ -97,12 +97,12 @@ export default function Header({
 
       {isLoggedIn ? (
         // 로그인 상태 분기
-        <div className="flex gap-[10px] items-center header-inner">
+        <div className="flex gap-[10px] items-center header-inner border-2 border-red-500">
           {/* 모드변경 버튼 */}
           <div className="hidden lg:block modeChange">
             <ModeChange />
           </div>
-          <div className="hidden gap-2 lg:flex buttonComponent">
+          <div className="hidden gap-2 border-2 border-blue-500 lg:flex buttonComponent">
             <ButtonComponent
               bgcolor="bg-[#265CAC] hover:bg-[#1e4d8a] dark:bg-mainDark dark:hover:bg-mainTextDark"
               textcolor="text-[white] dark:text-blackDark"
@@ -121,7 +121,7 @@ export default function Header({
             </ButtonComponent>
           </div>
           {/* 알림 */}
-          <div className="w-[48px] h-[48px] flex justify-center items-center mx-[10px] relative notification">
+          <div className="w-[48px] h-[48px] flex justify-center items-center mx-[10px] relative notification border-2 border-green-500">
             <img
               src={!isDark ? notifyIcon : darkNotifyIcon}
               alt="알림 아이콘"
