@@ -68,7 +68,7 @@ export default function Header({
   return (
     <header
       className={twMerge(
-        "h-[70px] flex items-center justify-end py-[20px] dark:bg-lightBlackDark",
+        "h-[70px] w-full flex items-center justify-end dark:bg-lightBlackDark fixed left-0 top-0 z-10 bg-white",
         logo ? "justify-between" : "justify-end",
         sidebar ? "pl-[100px] pr-[36px]" : "px-[36px]",
         isActive && "on"
