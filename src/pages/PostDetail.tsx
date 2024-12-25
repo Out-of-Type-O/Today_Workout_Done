@@ -245,7 +245,7 @@ export default function PostDetail() {
               likes={data.likes}
               // comments={data.comments}
               //포스트 아이디
-              postId={post_id}
+              postId={data.postID}
               postAuthorId={data.userID}
             />
           </>

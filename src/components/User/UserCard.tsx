@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
 import FollowButton from "../FollowButton";
 import UserProfile from "../UserProfile";
-import { updateNameFn } from "../../utils/updateName";
 import { Following, useAuth } from "../../stores/authStore";
+import { updateNameFn } from "../../api/User";
 
 interface UserCardType {
   uname: string;
@@ -81,7 +81,7 @@ export default function UserCard({
       />
       <div className="flex flex-col gap-1">
         <div className="flex">
-          {/* <p className="text-lg hidden">{uname}</p> */}
+          {/* <p className="hidden text-lg">{uname}</p> */}
           {isFollowBtn && (
             <FollowButton
               width="w-[128px]"

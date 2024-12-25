@@ -1,5 +1,5 @@
 import { api } from "../api/axios";
-import { createNotification } from "./api/createNotification";
+import { createNotification } from "../utils/api/createNotification";
 
 export const addPostLike = async (postId: string, postAuthorId: string) => {
   try {

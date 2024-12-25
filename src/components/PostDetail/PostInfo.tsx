@@ -1,7 +1,5 @@
 import { useRef, useState, useEffect } from "react";
 import UserProfile from "../UserProfile";
-import { updatePost } from "../../utils/updatePost";
-import { deletePost } from "../../utils/api/deletePosts";
 import { useNavigate } from "react-router";
 import { channelMapping } from "../../constants/channel";
 import thumbnail from "../../assets/images/feed_thumbnail.jpg";
@@ -10,6 +8,7 @@ import ConfirmModal from "../modal/ConfirmModal";
 import moment from "moment";
 import { twMerge } from "tailwind-merge";
 import { useAuth } from "../../stores/authStore";
+import { deletePost, updatePost } from "../../api/Post";
 
 interface PostInfoProps {
   title: string;

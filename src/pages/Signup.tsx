@@ -9,6 +9,7 @@ import { SignupConfirm } from "../components/modal/SignupConfirm";
 import darkMainLogo from "../assets/darkicons/darkMainLogo.svg";
 import { useDarkModeStore } from "../stores/darkModeStore";
 import darkShowPwImg from "../assets/darkicons/darkShowPwImg.svg";
+import { postSignUp } from "../api/Auth";
 
 export default function Signup() {
   const navigate = useNavigate();
@@ -199,11 +200,7 @@ export default function Signup() {
     setIsSubmitting(true);
 
     try {
-      await api.post("/signup", {
-        fullName: name,
-        email: email,
-        password: password,
-      });
+      await postSignUp(name, email, password);
 
       // 성공 시 리다이렉트나 사용자 알림 처리
       setIsModalOpen(true); // 회원가입 성공 시 모달 열기

@@ -3,12 +3,12 @@ import logoImg from "../assets/loge.svg";
 import { useState } from "react";
 import { twMerge } from "tailwind-merge";
 import { useAuth } from "../stores/authStore";
-import { api } from "../api/axios";
 import { AxiosError } from "axios";
 import { useToken } from "../stores/tokenStore";
 import ConfirmModal from "../components/modal/ConfirmModal";
 import { useDarkModeStore } from "../stores/darkModeStore";
 import darkMainLogo from "../assets/darkicons/darkMainLogo.svg";
+import { postLogin } from "../api/Auth";
 
 export default function Login() {
   // 토큰 저장하기
@@ -44,10 +44,7 @@ export default function Login() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
-      const { status, data } = await api.post("login", {
-        email,
-        password,
-      });
+      const { status, data } = await postLogin(email, password);
       if (status === 200) {
         setIsModalOpen(true);
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { getChannelPost } from "../../utils/api/getChannelPost";
 import { useLocation } from "react-router";
 import ImageCard from "../ImageCard";
+import { getChannelPost } from "../../api/Post";
 
 // 무한스크롤에서 몇개씩 보여줄지 선택
 const limit = 12;

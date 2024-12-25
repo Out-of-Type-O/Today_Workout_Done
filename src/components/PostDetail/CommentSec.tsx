@@ -1,20 +1,18 @@
 import { useEffect, useRef, useState } from "react";
 import CommentBox from "./CommentBox";
 import CommentForm from "./CommentForm";
-import { Comment, getPostDetail } from "../../utils/getPostDetail";
 import { delCommentFn, newCommentFn } from "../../utils/commentFn";
-import { addPostLike, removePostLike } from "../../utils/postLikeFn";
 import { useAuth } from "../../stores/authStore";
+import { addPostLike, removePostLike } from "../../api/Like";
+import { getPostDetail } from "../../api/Post";
 
 export default function CommentSec({
   likes,
-  // comments,
   postId,
   postAuthorId,
 }: {
   likes: LikeType[];
-  // comments: CommentType[];
-  postId: string | undefined;
+  postId: string;
   postAuthorId: string;
 }) {
   const [commentList, setCommentList] = useState<Comment[]>([]); //댓글 목록
@@ -25,6 +23,8 @@ export default function CommentSec({
   const [likeList, setLikeList] = useState<LikeType[]>(likes); // 좋아요 목록
   const [isLiked, setIsLiked] = useState<boolean | undefined>(false); // 게시글 좋아요 상태
 
+  console.log(commentList);
+
   //로그인 상태
   const isLogin = useAuth((state) => state.isLoggedIn);
   const UserId = useAuth((state) => state.user?._id);
@@ -33,12 +33,13 @@ export default function CommentSec({
   useEffect(() => {
     const fetchComments = async () => {
       setIsLoading(true);
+
       try {
         //포스트 아이디
-        const postDetail = await getPostDetail(`/posts/${postId}`);
+        const postDetail = await getPostDetail(postId);
         setCommentList(postDetail?.comments || []); // 댓글 목록 상태 업데이트
       } catch (error) {
-        console.log(`댓글 불러오기 실패: ${error}`);
+        console.log(`댓글 불러오기 실패: ${error}`, postId);
         setError(true);
       } finally {
         setIsLoading(false);

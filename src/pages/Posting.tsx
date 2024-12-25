@@ -2,12 +2,12 @@ import { useRef, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import downIcon from "../assets/down.svg";
 import PostStatus from "../components/posting/PostStatus";
-import { postingFn } from "../utils/postingFn";
 import { useNavigate } from "react-router";
 import { useLoadingStore } from "../stores/loadingStore";
 import Loading from "../components/Loading";
 import { useDarkModeStore } from "../stores/darkModeStore";
 import darkDownIcon from "../assets/darkicons/darkDown.svg";
+import { createPost } from "../api/Post";
 
 export default function Posting() {
   const navigate = useNavigate();
@@ -89,7 +89,7 @@ export default function Posting() {
 
     try {
       startLoading();
-      await postingFn(formData);
+      await createPost(formData);
 
       navigate(route[0].route);
     } catch (error) {

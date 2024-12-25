@@ -1,7 +1,6 @@
 import UserProfile from "../UserProfile";
 import trashIcon from "../../assets/trash.svg";
 import darkTrashIcon from "../../assets/darkicons/darkTrashIcon.svg";
-import { Comment } from "../../utils/getPostDetail";
 import { useAuth } from "../../stores/authStore";
 import { useNavigate } from "react-router";
 import ConfirmModal from "../modal/ConfirmModal";
@@ -17,7 +16,7 @@ export default function CommentBox({
   handleDelete: (commentId: string) => Promise<void>;
 }) {
   const isDark = useDarkModeStore((state) => state.isDark);
-
+  console.log("코멘트", comment);
   // 사용자 정보 가져오기
   const loginId = useAuth((state) => state.user);
   const navigate = useNavigate();
